@@ -2,7 +2,7 @@
 
 This project is an attempt to use deep learning to generate haikus _that conform
 to the 5-7-5 syllable pattern_. Much previous research into generating haikus
-doesn't enforce syllable counts, largely because modern English haikus often
+doesn't enforce syllable counts[[1]](https://www.cs.bgu.ac.il/~yoavg/publications/calc09haiku.pdf)[[2]](https://neuro.cs.ut.ee/wp-content/uploads/2018/02/poetry.pdf), largely because modern English haikus often
 don't strictly conform to that pattern either. This makes finding training
 data difficult. I get around this problem by providing the syllable count of
 each line as an input to the network along with the text at training time. Then,
