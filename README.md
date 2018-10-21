@@ -26,6 +26,32 @@ the smell of snow line
 
 Clearly there's much work to be done in terms of _content_, but it's a start.
 
+### Model
+
+It is set up as a character level sequence-to-sequence problem.
+The model I've been working on so far is 3 layers, one for each of the 3 lines. 
+The syllable count for each line is embedded into a 512 dimensional space and 
+used to initialize the state of each layer's LSTM, which is used for character
+generation. For the second and third lines, the previous LSTM's state is added
+with the syllable embedding to initialze the state. The output of each LSTM is
+fed through a fully connected layer to generate one-hot-encodings of characters
+
+The model looks something like this:
+
+```
+Syllables  (Line 1) -------> Dense
+                               V (state)
+Characters (Line 1) --------> LSTM -> Dense -> Output (Line 1)
+                               V (state)
+Syllables  (Line 2) -> Dense---+ (add Dense output with previous state)
+                               V
+Characters (Line 2) --------> LSTM -> Dense -> Output (Line 2)
+                               V (state)
+Syllables  (Line 3) -> Dense---+ (add Dense output with previous state)
+                               V
+Characters (Line 3) --------> LSTM -> Dense -> Output (Line 3)
+```
+
 ### Repo
 
 The `notebooks` directory contains ipython notebooks with the code.  They are
