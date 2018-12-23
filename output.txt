@@ -90,3 +90,70 @@ THAT IS FUCKING COOL
  u n d e r   t h e   s u n s e t
  h a n d s   i n   t h e   s p r i n g   o f   t h e   s t o n e
  n o r   o f   t h e   l o v e r
+ 
+ 
+ 575
+ 
+ on the ferris wheel
+reaching on a busterfly
+end of the training
+
+early spring air !
+another drop of spring rain
+in my granddaughter's hair !!
+
+family christmas - !
+she leaves her good intentions !!
+in a cherry blossom !!!
+
+dragonfly so blue
+just rests on a rock in pond
+it will never fly (exists in training data :*()
+
+on the ferris wheel
+reaching out towards the sun !
+harbingers of spring !
+
+######
+(Tendency to recreate whole lines and then (maybe?) mix and match with other lines. I suspect it _might_ just be pulling lines based on the syllable count. I know it overfit based on the validation accuracy. 
+I probably need more training data.
+######
+
+353
+deep winter
+the steady shudder
+of apples
+
+veterans day---
+she writes a haiku !
+in my hand !!
+
+o master !
+i am a poor girl !
+who serves mime
+
+lstm-3-2048-07-1.72.hdf5 5-7-5
+
+summer morning snow
+the shadow to the spider
+in the antient sand
+
+under the hater
+on the wind spent of the sun
+of the sunshine moon
+
+
+black dark passing day
+pale blossoms of the stone deep
+in the middle ofe
+
+king of the window
+the smell of the spring wind
+with a cat flower
+
+
+lstm-4-added-twaiku-2048-1.17
+
+very sad that i
+as so stressful i am so
+fucking excited

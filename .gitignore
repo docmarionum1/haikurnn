@@ -2,3 +2,6 @@
 *.pkl
 Research
 **.hdf5
+**auth.py
+notebooks/_scratch
+**__pycache__
