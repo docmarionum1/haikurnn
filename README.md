@@ -1,5 +1,7 @@
 # Haiku Generation with Deep Learning _(Work in Progress)_
 
+Read a full description of the project [here](https://medium.com/@docmarionum1).
+
 This project is an attempt to use deep learning to generate haikus _that conform
 to the 5-7-5 syllable pattern_. Much previous research into generating haikus
 doesn't enforce syllable counts[[1]](https://www.cs.bgu.ac.il/~yoavg/publications/calc09haiku.pdf)[[2]](https://neuro.cs.ut.ee/wp-content/uploads/2018/02/poetry.pdf), largely because modern English haikus often
@@ -12,52 +14,38 @@ project is still early, but so far I've gotten some promising results.
 Here an examples of 5-7-5 syllable output:
 
 ```
-Hot afternoon haze
-I tell the conversation
-dandelion seeds
+early morning sun
+from the carried garden fate
+stars at the sunset
 ```
 
-And if I use the same network to get a 5-5-5 poem:
+And if I use the same network to get a 10-10-10 poem:
 ```
-Indian summer
-packing of the wind
-the smell of snow line
+just as the street lamp spake the sun is bright
+and the soul and the spring are blowing
+with every beat of my heart i will love you
 ```
 
-Clearly there's much work to be done in terms of _content_, but it's a start.
+### Model Version 1
 
-### Model
+The first version of the model is implemented in [`notebooks/models/v1`](notebooks/models/v1).
 
-It is set up as a character level sequence-to-sequence problem.
-The model I've been working on so far is 3 layers, one for each of the 3 lines. 
-The syllable count for each line is embedded into a 512 dimensional space and 
-used to initialize the state of each layer's LSTM, which is used for character
-generation. For the second and third lines, the previous LSTM's state is added
-with the syllable embedding to initialze the state. The output of each LSTM is
-fed through a fully connected layer to generate one-hot-encodings of characters
+![Model V1 Diagram](https://github.com/docmarionum1/haikurnn/raw/master/notebooks/models/v1/diagram.png)
 
-The model looks something like this:
-
-```
-Syllables  (Line 1) -------> Dense
-                               V (state)
-Characters (Line 1) --------> LSTM -> Dense -> Output (Line 1)
-                               V (state)
-Syllables  (Line 2) -> Dense---+ (add Dense output with previous state)
-                               V
-Characters (Line 2) --------> LSTM -> Dense -> Output (Line 2)
-                               V (state)
-Syllables  (Line 3) -> Dense---+ (add Dense output with previous state)
-                               V
-Characters (Line 3) --------> LSTM -> Dense -> Output (Line 3)
-```
+The model is essentially a character-to-character text generation network with a twist. 
+The number of syllables for each line is provided to the network, passed through a dense 
+layer and then added to the LSTM's internal state. This means that by changing the three numbers 
+provided, we can alter the behavior of the network. My hope is that this will still 
+allow the network to learn "English" from the whole corpus even though most of the samples 
+are not 5–7–5 haiku, while still allowing us to generate haiku of that length later. 
 
 ### Repo
 
-The `notebooks` directory contains ipython notebooks with the code.  They are
-not well organized yet.
+The [`notebooks`](notebooks) directory contains the code organized into:
+- [`data`](notebooks/data): Jupyter notebooks for working with and preparing the data.
+- [`models`](notebooks/models): Jupyter notebooks and python files implementing the different models.
 
-`input/dictionaries` contains phoneme dictionaries from The [CMU Pronouncing
-Dictionary](http://www.speech.cs.cmu.edu/cgi-bin/cmudict).
-
-`input/poems` contains various poetry datasets.  
+[`input`](input) contains the raw input data as well as [`haikus.csv`](input/poems/haikus.csv) 
+which contains the whole corpus and [`sources.txt`](input/poems/sources.txt) describes the
+sources used to build that corpus. [`Preprocess Haikus.ipynb`](notebooks/data/Preprocess%20Haikus.ipynb) 
+constructs corpus.
