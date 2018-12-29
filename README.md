@@ -1,6 +1,6 @@
 # Haiku Generation with Deep Learning _(Work in Progress)_
 
-Read a full description of the project [here](https://medium.com/@docmarionum1).
+Read a full description of the project [here](https://towardsdatascience.com/generating-haiku-with-deep-learning-dbf5d18b4246).
 
 This project is an attempt to use deep learning to generate haikus _that conform
 to the 5-7-5 syllable pattern_. Much previous research into generating haikus
